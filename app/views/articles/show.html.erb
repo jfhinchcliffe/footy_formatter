@@ -1,13 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+  <div class="col-md-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h2 class="panel-title">Original Text</h3>
+      </div>
+      <div class="panel-body">
+        <%= @article.body %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h2 class="panel-title">Translated Text</h3>
+      </div>
+      <div class="panel-body">
+        <%=  @translated %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Back', articles_path %>
+</div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
-</p>
-<p>
-  <strong>Translated</strong>
-  <%= @translated %>
-</p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+

@@ -8,16 +8,7 @@ class Article < ActiveRecord::Base
     private
     
     def format_times(body)
-       body.split(' ').map { | word | check_for_date(word) }.join(' ')
-       #body.gsub!(/[0-2]\d:[0-6]\du?/) { |word| convert_to_12_hour(word) }
-    end
-    
-    def check_for_date(word)
-        if word =~ /[0-2]\d:[0-6]\du?/
-            convert_to_12_hour(word) 
-        else
-            word
-        end
+       body.gsub(/[0-2]\d:[0-6]\d(d|p)?/) { |word| convert_to_12_hour(word) }
     end
     
     def convert_to_12_hour(date)
@@ -46,7 +37,7 @@ class Article < ActiveRecord::Base
         am_or_pm = ""
         hour > 11 ? am_or_pm = "pm" : am_or_pm = "am"
         hour -= 12 if hour > 12
-        "#{hour}.#{minute}#{am_or_pm} #{pick_up_drop_off},"
+        "#{hour}.#{minute}#{am_or_pm} #{pick_up_drop_off}"
     end
         
 end
