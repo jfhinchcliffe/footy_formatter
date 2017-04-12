@@ -8,11 +8,11 @@ class Article < ActiveRecord::Base
     private
     
     def format_times(body)
-       body.gsub(/[0-2]\d:[0-6]\d(d|p)?/) { |word| convert_to_12_hour(word) }
+       body.gsub(/[0-2]\d:[0-6]\d(d|u)?/) { |word| convert_to_12_hour(word) }
     end
     
     def convert_to_12_hour(date)
-        date = pick_up_or_drop_off(date) if date.count("p") > 0 || date.count("d") > 0
+        date = pick_up_or_drop_off(date) if date.count("u") > 0 || date.count("d") > 0
         converted_nums = []
         date.split(':').each do |num|
             converted_nums << num
@@ -21,7 +21,7 @@ class Article < ActiveRecord::Base
     end
     
     def pick_up_or_drop_off(date)
-        if date.count("p") > 0
+        if date.count("u") > 0
             date[0..-2] + ": (pick up only)"
         elsif date.count("d") > 0
             date[0..-2] + ": (drop off only)"
