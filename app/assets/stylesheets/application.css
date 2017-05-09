@@ -20,3 +20,8 @@
    font-family: 'Titillium Web', sans-serif;
    background-color: #a9bfc0;
  }
+ 
+ img {
+  border: 10px solid;
+  border-color: #ffddff;
+ }

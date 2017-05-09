@@ -1,3 +1,5 @@
+require 'httparty'
+
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
@@ -11,6 +13,9 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @translated = @article.translate.slice(0..-1) #@article.body
+    response = HTTParty.get("http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC")
+    json = JSON.parse(response.body)
+    @image = json["data"][0]["images"]["fixed_height"]["url"]
   end
 
   # GET /articles/new
